@@ -1,3 +1,3 @@
-export function shuffle(array: any[]) {
-  return array.sort(() => 0.5 - Math.random());
+export function shuffle(questions: any[]) {
+  return questions.sort(() => 0.5 - Math.random());
 }
