@@ -1,39 +1,120 @@
 import './style/style.scss';
-
-// All kod härifrån och ner är bara ett exempel för att komma igång
-
-// I denna utils-fil har vi lagrat funktioner som ofta används, t.ex. en "blanda array"-funktion
+import { questions } from './array';
 import { shuffle } from './utils';
 
-// I denna fil har vi lagrat vår "data", i detta exempel en ofullständig kortlek
-import exampleCardDeck from './exampleArray';
+const darkMode = document.querySelector('#darkMode');
+const lightMode = document.querySelector('#lightMode');
+const yesBtn = document.querySelector('#acceptedBtn');
+const noBtn = document.querySelector('#deniedBtn');
 
-// Blanda kortleken
-const myShuffledCardDeck = shuffle(exampleCardDeck);
+const gameDescText = 'Let the Game Begin!';
+const gameDescription = document.querySelector('#gameDescription');
 
-/**
- * Vänder upp/ner på det klickade kortet genom att toggla en CSS-klass.
- * @param this - Det HTML-element som har klickats på
- * @return {void}
- */
-function flipCard(this: HTMLElement): void {
-  if (this !== undefined) {
-    this.classList.toggle('visible');
-  }
+let playerName = '';
+
+const questionTextDiv = document.querySelector('#questionText');
+const answer1Btn = document.querySelector('#answer1');
+const answer2Btn = document.querySelector('#answer2');
+const answer3Btn = document.querySelector('#answer3');
+const answer4Btn = document.querySelector('#answer4');
+const next = document.querySelector('#next');
+
+darkMode.addEventListener('click', backgroundDark);
+lightMode.addEventListener('click', backgroundLight);
+
+yesBtn.addEventListener('click', goToGame);
+noBtn.addEventListener('click', nextTime);
+
+document.querySelector('#startGameBtn').addEventListener('click', startGame);
+
+answer1Btn.addEventListener('click', checkAnswer);
+answer2Btn.addEventListener('click', checkAnswer);
+answer3Btn.addEventListener('click', checkAnswer); 
+answer4Btn.addEventListener('click', checkAnswer); 
+
+next?.addEventListener('click', nextQuestion);
+
+let currentQuestion = 0; 
+let points = 0;
+
+document.querySelector ('#restartGameBtn').addEventListener('click', restartGame);
+
+gameDescription.innerHTML = gameDescText;
+
+function backgroundDark(){
+  document.body.classList.toggle('light_theme');
+  darkMode.classList.toggle('display');
+  lightMode.classList.remove('display');
 }
 
-// Printa kortleken
-let cardString = '';
-myShuffledCardDeck.forEach((card) => {
-  cardString += `
-    <button class="card">
-      <span class="front">♠</span>
-      <span class="back">${card}</span>
-    </button>`;
-});
+function backgroundLight(){
+  document.body.classList.remove('light_theme');
+  lightMode.classList.toggle('hide');
+  darkMode.classList.remove('hide');
+}
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = cardString;
+function goToGame(){
+  document.querySelector('#pageOne').style.display = 'none';
+  document.querySelector('#pageTwo').style.display = 'block';
+}
 
-document.querySelectorAll('.card').forEach((card) => {
-  card.addEventListener('click', flipCard);
-});
+function nextTime() {
+  alert('Better luck next time, wish you all luck');
+}
+
+function startGame() {
+  playerName = document.querySelector('#playerNameInput').value;
+  gameDescription.style.display = 'none';
+  document.querySelector('#playerDetails').style.display = 'none';
+  document.querySelector('#questionContainer').style.display = 'block';
+  document.querySelector('#next').style.display = 'block';
+  nextQuestion();
+};
+
+function checkAnswer(e){
+const userAnswer = e.currentTarget.innerHTML;
+const correctAnswer = questions[currentQuestion -1].correctAnswer;
+answer1Btn.disabled= true;
+answer2Btn.disabled= true;
+answer3Btn.disabled= true;
+answer4Btn.disabled= true;
+if (userAnswer == correctAnswer) {
+points++;
+}else {
+points--;}
+console.log(points);
+}
+
+function nextQuestion() {
+  answer1Btn.disabled= false;
+  answer2Btn.disabled= false;
+  answer3Btn.disabled= false;
+  answer4Btn.disabled= false;
+  if (currentQuestion >= shuffle(questions).length) { 
+    gameOver();
+    return;
+  }
+  questionTextDiv.innerHTML = questions[currentQuestion].questionText;
+  answer1Btn.innerHTML = questions[currentQuestion].answerOptions[0];
+  answer2Btn.innerHTML = questions[currentQuestion].answerOptions[1];
+  answer3Btn.innerHTML = questions[currentQuestion].answerOptions[2];
+  answer4Btn.innerHTML = questions[currentQuestion].answerOptions[3];
+
+  currentQuestion ++;
+}
+
+function restartGame(){
+  document.querySelector('#gameOver').style.display ='none';
+  document.querySelector('#playerDetails').style.display = 'block';
+  document.querySelector('#questionContainer').style.display = 'none';
+  currentQuestion = 0;
+  points = 0;
+}
+
+function gameOver() {
+  document.querySelector('#gameOver').style.display = 'block'; 
+  document.querySelector('#questionContainer').style.display = 'hidden';
+  document.querySelector('#pointsContainer').innerHTML = `Grattis ${playerName} du fick ${points} poäng!!`;
+  document.querySelector('#restartGameBtn').style.display = 'block';
+  document.querySelector('#next').style.display = 'none';
+}

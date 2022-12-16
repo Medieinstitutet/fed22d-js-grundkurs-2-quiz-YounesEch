@@ -4,14 +4,60 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/ico" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projekt</title>
+    <link rel="stylesheet" href="src/style/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> 
+    <title>Quiz project</title>
   </head>
+
   <body>
     <main>
-      <div class="app" id="app"></div> <!-- TODO: går bra att radera -->
-      <!-- TODO: skriv din kod här, innan script-taggen -->
+      <div>
+        <button class="light" id="lightMode"><i class='bx bx-toggle-right'></i></button>
+        <button class="dark" id="darkMode"><i class='bx bxs-toggle-left'></i></button>
+      </div>  
+      <section class="page-one" id="pageOne">
+        <h1>Welcome to the geography quiz</h1>
+        <div class="question">
+          <h3>Let us test your knowledge</h3>
+          <p class="text">See if you can make it to the top</p>
+          <br>
+          <hr>
+          <div>Accept challenge?
+            <button class="accepted" id="acceptedBtn">yes</button>
+            <button class="denied" id="deniedBtn">no</button>
+          </div>
+        </div>
+        <p>A quiz by Younes</p>
+      </section>
+      <br>
+      <section class="page-two hide" id="pageTwo">
+        <div id="gameDescription" class="questionContainer"></div>
+        <div id="playerDetails">
+          <label>
+            Ditt namn: <input type="text" id="playerNameInput">
+          </label>
+          <button id="startGameBtn">Starta spelet</button>
+        </div>
+      
+        <div id="questionContainer">
+          <div id="questionText"></div>
+          <br>
+          <button id="answer1"></button>
+          <button id="answer2"></button>
+          <button id="answer3"></button>
+          <button id="answer4"></button>
+        </div>
+        <br>
+        <button id="next">Nästa fråga</button>
+        <div id="gameOver" class="hidden">
+          <p id="pointsContainer"></p>
+          <p>
+            <button id="restartGameBtn">Spela igen</button>
+          </p>
+        </div>
+      
+      </section>
     </main>
-
     <!-- TODO
     - Validera HTML (kopiera den renderade HTML-koden): https://validator.w3.org/#validate_by_input
     - Kontrollera tillgänglighet: https://www.a11yproject.com/checklist/ & Chrome Lighthouse/Firefox Accessibility Tools
