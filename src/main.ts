@@ -74,6 +74,10 @@ function startGame() {
 function checkAnswer(e){
 const userAnswer = e.currentTarget.innerHTML;
 const correctAnswer = questions[currentQuestion -1].correctAnswer;
+answer1Btn.disabled= true;
+answer2Btn.disabled= true;
+answer3Btn.disabled= true;
+answer4Btn.disabled= true;
 if (userAnswer == correctAnswer) {
 points++;
 }else {
@@ -82,6 +86,10 @@ console.log(points);
 }
 
 function nextQuestion() {
+  answer1Btn.disabled= false;
+  answer2Btn.disabled= false;
+  answer3Btn.disabled= false;
+  answer4Btn.disabled= false;
   if (currentQuestion >= shuffle(questions).length) { 
     gameOver();
     return;
