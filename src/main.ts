@@ -1,6 +1,5 @@
 import './style/style.scss';
 
-
 const darkMode = document.querySelector('#darkMode');
 const lightMode = document.querySelector('#lightMode');
 const yesBtn = document.querySelector('#acceptedBtn');
@@ -14,8 +13,9 @@ let playerName = '';
 const questionTextDiv = document.querySelector('#questionText');
 const answer1Btn = document.querySelector('#answer1');
 const answer2Btn = document.querySelector('#answer2');
-const answer3Btn = document.querySelector('#answer3'); 
-const answer4Btn = document.querySelector('#answer4'); 
+const answer3Btn = document.querySelector('#answer3');
+const answer4Btn = document.querySelector('#answer4');
+const next = document.querySelector('#next');
 
 darkMode.addEventListener('click', backgroundDark);
 lightMode.addEventListener('click', backgroundLight);
@@ -30,6 +30,8 @@ answer2Btn.addEventListener('click', checkAnswer);
 answer3Btn.addEventListener('click', checkAnswer); 
 answer4Btn.addEventListener('click', checkAnswer); 
 
+next?.addEventListener('click', nextQuestion);
+
 let currentQuestion = 0; 
 let points = 0;
 
@@ -40,7 +42,7 @@ const questions = [
       'Malmö',
       'Västerås',
       'Stockholm',
-      'Göteborg'
+      'Göteborg',
     ], 
     correctAnswer: 'Stockholm',
   }, 
@@ -50,7 +52,7 @@ const questions = [
       'Casablanca',
       'Rabat',
       'Marrakech',
-      'Tangier'
+      'Tangier',
     ], 
     correctAnswer: 'Rabat',
   },
@@ -60,8 +62,8 @@ const questions = [
       'Paris',
       'Marseille',
       'Strasbourg',
-      'Lyon'
-    ], 
+      'Lyon',
+    ],
     correctAnswer: 'Paris',
   },
   {
@@ -70,8 +72,8 @@ const questions = [
       'Africa',
       'Asia',
       'America',
-      'Europa'
-    ], 
+      'Europa',
+    ],
     correctAnswer: 'Europa',
   },
   {
@@ -80,8 +82,8 @@ const questions = [
       'Africa',
       'Asia',
       'Europa',
-      'America'
-    ], 
+      'America',
+    ],
     correctAnswer: 'Africa',
   },
   {
@@ -90,8 +92,8 @@ const questions = [
       'Rabat',
       'Casablanca',
       'Agadir',
-      'Tangier'
-    ], 
+      'Tangier',
+    ],
     correctAnswer: 'Casablanca',
   },
   {
@@ -100,18 +102,18 @@ const questions = [
       'Irak',
       'Italy',
       'Bulgaria',
-      'Serbia'
-    ], 
+      'Serbia',
+    ],
     correctAnswer: 'Irak, Bulgaria',
   },
   {
-    questionText: 'Which country border to Portugal?', 
+    questionText: 'Which country border to Portugal?',
     answerOptions: [
       'Spain',
       'Morocco',
       'France',
-      'United kingdom'
-    ], 
+      'United kingdom',
+    ],
     correctAnswer: 'Spain',
   },
   {
@@ -120,7 +122,7 @@ const questions = [
       'Nilen',
       'Loire',
       'Elbe',
-      'Main'
+      'Main',
     ], 
     correctAnswer: 'Loire',
   },
@@ -130,7 +132,7 @@ const questions = [
       'Tokyo',
       'New Dehli',
       'Jakarta',
-      'Mumbai'
+      'Mumbai',
     ], 
     correctAnswer: 'tokyo ',
   }
@@ -139,7 +141,6 @@ const questions = [
 document.querySelector ('#restartGameBtn').addEventListener('click', restartGame);
 
 gameDescription.innerHTML = gameDescText;
-
 
 function backgroundDark(){
   document.body.classList.toggle('light_theme');
@@ -158,7 +159,7 @@ function goToGame(){
   document.querySelector('#pageTwo').style.display = 'block';
 }
 
-function nextTime(){
+function nextTime() {
   alert('Better luck next time, wish you all luck');
 }
 
@@ -166,6 +167,8 @@ function startGame() {
   playerName = document.querySelector('#playerNameInput').value;
   gameDescription.style.display = 'none';
   document.querySelector('#playerDetails').style.display = 'none';
+  document.querySelector('#questionContainer').style.display = 'block';
+  document.querySelector('#next').style.display = 'block';
   nextQuestion();
 };
 
@@ -175,8 +178,8 @@ const correctAnswer = questions[currentQuestion -1].correctAnswer;
 if (userAnswer == correctAnswer) {
 points++;
 }else {
-}
-nextQuestion();
+points--;}
+console.log(points);
 }
 
 function nextQuestion() {
@@ -184,26 +187,27 @@ function nextQuestion() {
     gameOver();
     return;
   }
-questionTextDiv.innerHTML = questions[currentQuestion].questionText;
-answer1Btn.innerHTML = questions[currentQuestion].answerOptions[0];
-answer2Btn.innerHTML = questions[currentQuestion].answerOptions[1];
-answer3Btn.innerHTML = questions[currentQuestion].answerOptions[2];
-answer4Btn.innerHTML = questions[currentQuestion].answerOptions[3];
+  questionTextDiv.innerHTML = questions[currentQuestion].questionText;
+  answer1Btn.innerHTML = questions[currentQuestion].answerOptions[0];
+  answer2Btn.innerHTML = questions[currentQuestion].answerOptions[1];
+  answer3Btn.innerHTML = questions[currentQuestion].answerOptions[2];
+  answer4Btn.innerHTML = questions[currentQuestion].answerOptions[3];
 
-currentQuestion ++;
+  currentQuestion ++;
 }
 
 function restartGame(){
   document.querySelector('#gameOver').style.display ='none';
-  document.querySelector('#questionContainer').classList.remove('hidden');
+  document.querySelector('#playerDetails').style.display = 'block';
+  document.querySelector('#questionContainer').style.display = 'none';
   currentQuestion = 0;
   points = 0;
-  nextQuestion();
 }
 
 function gameOver() {
   document.querySelector('#gameOver').style.display = 'block'; 
-  document.querySelector('#questionContainer').classList.add('hidden');
+  document.querySelector('#questionContainer').style.display = 'hidden';
   document.querySelector('#pointsContainer').innerHTML = `Grattis ${playerName} du fick ${points} poäng!!`;
+  document.querySelector('#restartGameBtn').style.display = 'block';
+  document.querySelector('#next').style.display = 'none';
 }
-
