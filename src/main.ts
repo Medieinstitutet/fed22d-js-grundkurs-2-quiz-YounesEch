@@ -71,11 +71,10 @@ function startGame() {
   nextQuestion();
 };
 
+const questionCounter= document.querySelector('#counter');
+const maxQuestions= 10;
+
 function nextQuestion() {
-  answer1Btn.disabled= false;
-  answer2Btn.disabled= false;
-  answer3Btn.disabled= false;
-  answer4Btn.disabled= false;
   if (currentQuestion >= shuffle(questions).length) { 
     gameOver();
     return;
@@ -87,19 +86,16 @@ function nextQuestion() {
   answer4Btn.innerHTML = questions[currentQuestion].answerOptions[3];
 
   currentQuestion ++;
+  questionCounter.innerHTML= `${currentQuestion}/${maxQuestions}`;
 }
 
 function checkAnswer(e){
   const userAnswer = e.currentTarget.innerHTML;
   const correctAnswer = questions[currentQuestion -1].correctAnswer;
-  answer1Btn.disabled= true;
-  answer2Btn.disabled= true;
-  answer3Btn.disabled= true;
-  answer4Btn.disabled= true;
-  if (userAnswer == correctAnswer) {
+  if (userAnswer == correctAnswer){
   points++;
-  }else {
-  points--;}
+  }else if (points > 0){
+  points--; }
   console.log(points);
   }
 
