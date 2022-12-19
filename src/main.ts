@@ -19,6 +19,9 @@ const answer3Btn = document.querySelector('#answer3');
 const answer4Btn = document.querySelector('#answer4');
 const next = document.querySelector('#next');
 
+let currentQuestion = 0; 
+let points = 0;
+
 darkMode.addEventListener('click', backgroundDark);
 lightMode.addEventListener('click', backgroundLight);
 
@@ -33,9 +36,6 @@ answer3Btn.addEventListener('click', checkAnswer);
 answer4Btn.addEventListener('click', checkAnswer); 
 
 next?.addEventListener('click', nextQuestion);
-
-let currentQuestion = 0; 
-let points = 0;
 
 document.querySelector ('#restartGameBtn').addEventListener('click', restartGame);
 
@@ -71,20 +71,6 @@ function startGame() {
   nextQuestion();
 };
 
-function checkAnswer(e){
-const userAnswer = e.currentTarget.innerHTML;
-const correctAnswer = questions[currentQuestion -1].correctAnswer;
-answer1Btn.disabled= true;
-answer2Btn.disabled= true;
-answer3Btn.disabled= true;
-answer4Btn.disabled= true;
-if (userAnswer == correctAnswer) {
-points++;
-}else {
-points--;}
-console.log(points);
-}
-
 function nextQuestion() {
   answer1Btn.disabled= false;
   answer2Btn.disabled= false;
@@ -102,6 +88,20 @@ function nextQuestion() {
 
   currentQuestion ++;
 }
+
+function checkAnswer(e){
+  const userAnswer = e.currentTarget.innerHTML;
+  const correctAnswer = questions[currentQuestion -1].correctAnswer;
+  answer1Btn.disabled= true;
+  answer2Btn.disabled= true;
+  answer3Btn.disabled= true;
+  answer4Btn.disabled= true;
+  if (userAnswer == correctAnswer) {
+  points++;
+  }else {
+  points--;}
+  console.log(points);
+  }
 
 function restartGame(){
   document.querySelector('#gameOver').style.display ='none';

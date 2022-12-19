@@ -6,19 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="src/style/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
     <title>Quiz project</title>
   </head>
 
   <body>
     <main>
       <div>
-        <button class="light" id="lightMode"><i class='bx bx-toggle-right'></i></button>
-        <button class="dark" id="darkMode"><i class='bx bxs-toggle-left'></i></button>
+        <button class="light" id="lightMode" aria-label="themeToggle"><i class='bx bx-toggle-right'></i></button>
+        <button class="dark" id="darkMode" aria-label="themeToggle"><i class='bx bxs-toggle-left'></i></button>
       </div>  
       <section class="page-one" id="pageOne">
         <h1>Welcome to the geography quiz</h1>
         <div class="question">
-          <h3>Let us test your knowledge</h3>
+          <h5>Let us test your knowledge</h5>
           <p class="text">See if you can make it to the top</p>
           <br>
           <hr>
@@ -39,8 +40,8 @@
           <button id="startGameBtn">Starta spelet</button>
         </div>
       
-        <div id="questionContainer">
-          <div id="questionText"></div>
+        <div id="questionContainer" class="container">
+          <div id="questionText" class="questionInfo"></div>
           <br>
           <button id="answer1"></button>
           <button id="answer2"></button>
@@ -48,11 +49,11 @@
           <button id="answer4"></button>
         </div>
         <br>
-        <button id="next">Nästa fråga</button>
+        <button id="next" class="nextQuestion">Nästa fråga</button>
         <div id="gameOver" class="hidden">
           <p id="pointsContainer"></p>
           <p>
-            <button id="restartGameBtn">Spela igen</button>
+            <button id="restartGameBtn" class="playAgain">Spela igen</button>
           </p>
         </div>
       
