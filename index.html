@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"> <!-- TODO: glöm ej att byta språk här -->
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/ico" href="/favicon.ico" />
@@ -28,7 +28,6 @@
             <button class="denied" id="deniedBtn">no</button>
           </div>
         </div>
-        <p>A quiz by Younes</p>
       </section>
       <br>
       <section class="page-two hide" id="pageTwo">
@@ -46,11 +45,22 @@
             <p id="counter">1/10</p>
           </div>
             <div id="questionText" class="questionInfo"></div>
-          <br>
-          <button id="answer1"></button>
-          <button id="answer2"></button>
-          <button id="answer3"></button>
-          <button id="answer4"></button>
+          <br>  
+          <li>
+            <input type="Radio" name="answer" id="answer1">
+            <label for="answer1" id="answer1Text"></label>
+          </li>
+          <li>
+            <input type="Radio" name="answer" id="answer2">
+            <label for="answer2" id="answer2Text"></label>
+          </li>          <li>
+            <input type="Radio" name="answer" id="answer3">
+            <label for="answer3" id="answer3Text"></label>
+          </li>          <li>
+            <input type="Radio" name="answer" id="answer4">
+            <label for="answer4" id="answer4Text"></label>
+          </li>
+
         </div>
         <br>
         <button id="next" class="nextQuestion">Nästa fråga</button>

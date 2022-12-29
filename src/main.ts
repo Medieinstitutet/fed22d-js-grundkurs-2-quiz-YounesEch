@@ -13,11 +13,14 @@ const gameDescription = document.querySelector('#gameDescription');
 let playerName = '';
 
 const questionTextDiv = document.querySelector('#questionText');
-const answer1Btn = document.querySelector('#answer1');
-const answer2Btn = document.querySelector('#answer2');
-const answer3Btn = document.querySelector('#answer3');
-const answer4Btn = document.querySelector('#answer4');
+const answer1Btn = document.querySelector('#answer1Text');
+const answer2Btn = document.querySelector('#answer2Text');
+const answer3Btn = document.querySelector('#answer3Text');
+const answer4Btn = document.querySelector('#answer4Text');
 const next = document.querySelector('#next');
+
+const questionCounter= document.querySelector('#counter');
+const maxQuestions= 10;
 
 let currentQuestion = 0; 
 let points = 0;
@@ -35,7 +38,8 @@ answer2Btn.addEventListener('click', checkAnswer);
 answer3Btn.addEventListener('click', checkAnswer); 
 answer4Btn.addEventListener('click', checkAnswer); 
 
-next?.addEventListener('click', nextQuestion);
+
+next.addEventListener('click', nextQuestion);
 
 document.querySelector ('#restartGameBtn').addEventListener('click', restartGame);
 
@@ -69,10 +73,7 @@ function startGame() {
   document.querySelector('#questionContainer').style.display = 'block';
   document.querySelector('#next').style.display = 'block';
   nextQuestion();
-};
-
-const questionCounter= document.querySelector('#counter');
-const maxQuestions= 10;
+}
 
 function nextQuestion() {
   if (currentQuestion >= shuffle(questions).length) { 
@@ -87,7 +88,7 @@ function nextQuestion() {
 
   currentQuestion ++;
   questionCounter.innerHTML= `${currentQuestion}/${maxQuestions}`;
-}
+  }
 
 function checkAnswer(e){
   const userAnswer = e.currentTarget.innerHTML;
@@ -98,7 +99,7 @@ function checkAnswer(e){
   points--; }
   console.log(points);
   }
-
+  
 function restartGame(){
   document.querySelector('#gameOver').style.display ='none';
   document.querySelector('#playerDetails').style.display = 'block';
