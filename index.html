@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="src/style/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> 
     <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
-    <title>Quiz project</title>
+    <title>Gheography Quiz</title>
   </head>
 
   <body>
@@ -44,23 +44,14 @@
             <h3 class="counterName">Question</h3>
             <p id="counter">1/10</p>
           </div>
-            <div id="questionText" class="questionInfo"></div>
-          <br>  
-          <li>
-            <input type="Radio" name="answer" id="answer1">
-            <label for="answer1" id="answer1Text"></label>
-          </li>
-          <li>
-            <input type="Radio" name="answer" id="answer2">
-            <label for="answer2" id="answer2Text"></label>
-          </li>          <li>
-            <input type="Radio" name="answer" id="answer3">
-            <label for="answer3" id="answer3Text"></label>
-          </li>          <li>
-            <input type="Radio" name="answer" id="answer4">
-            <label for="answer4" id="answer4Text"></label>
-          </li>
-
+          <div id="questionText" class="questionInfo"></div>
+          <br>
+          <div class="answerContainer">
+              <button id="answer1Text" class="answer"></button>
+              <button id="answer2Text" class="answer"></button>
+              <button id="answer3Text" class="answer"></button>
+              <button id="answer4Text" class="answer"></button>
+          </div>
         </div>
         <br>
         <button id="next" class="nextQuestion">Nästa fråga</button>
