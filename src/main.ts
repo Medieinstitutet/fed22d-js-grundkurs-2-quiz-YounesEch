@@ -17,6 +17,7 @@ const answer1Btn = document.querySelector('#answer1Text');
 const answer2Btn = document.querySelector('#answer2Text');
 const answer3Btn = document.querySelector('#answer3Text');
 const answer4Btn = document.querySelector('#answer4Text');
+const answers = document.querySelector('#answersContainer');
 const next = document.querySelector('#next');
 
 const questionCounter= document.querySelector('#counter');
@@ -72,6 +73,7 @@ function startGame() {
   document.querySelector('#playerDetails').style.display = 'none';
   document.querySelector('#questionContainer').style.display = 'block';
   document.querySelector('#next').style.display = 'block';
+  document.body.style.backgroundImage='none';
   nextQuestion();
 }
 
@@ -90,16 +92,30 @@ function nextQuestion() {
   questionCounter.innerHTML= `${currentQuestion}/${maxQuestions}`;
   }
 
+const nextBtn = document.querySelector('#next');
+nextBtn?.addEventListener('click', changeColorBack);
+
+function changeColorBack (){
+  if (darkMode){
+    document.body.style.backgroundColor='#242424';
+  } else if(lightMode) {
+    document.body.style.backgroundColor='#9d826b';
+  }
+}
+
 function checkAnswer(e){
   const userAnswer = e.currentTarget.innerHTML;
   const correctAnswer = questions[currentQuestion -1].correctAnswer;
-  if (userAnswer == correctAnswer){
-  points++;
-  }else if (points > 0){
-  points--; }
+  if (userAnswer === correctAnswer){
+    points++;
+    document.body.style.backgroundColor='grey';
+  }else if(points > 0){
+    points--;
+    document.body.style.backgroundColor='grey';
+  }
   console.log(points);
   }
-  
+
 function restartGame(){
   document.querySelector('#gameOver').style.display ='none';
   document.querySelector('#playerDetails').style.display = 'block';

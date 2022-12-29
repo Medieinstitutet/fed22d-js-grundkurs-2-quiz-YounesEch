@@ -60,7 +60,7 @@ export const questions = [
     correctAnswer: 'Casablanca',
   },
   {
-    questionText: 'Which countries border to Turkey?', 
+    questionText: 'Which country border to Turkey?', 
     answerOptions: [
       'Irak',
       'Italy',
@@ -97,6 +97,6 @@ export const questions = [
       'Jakarta',
       'Mumbai',
     ], 
-    correctAnswer: 'tokyo ',
+    correctAnswer: 'Tokyo',
   }
 ];
