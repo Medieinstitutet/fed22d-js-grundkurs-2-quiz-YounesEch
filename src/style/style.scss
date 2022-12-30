@@ -17,7 +17,7 @@
 body {
 justify-content: center;
 display: flex;
-background-image: url('/assets/globeHand.jpg');
+background-image: url('/public/globeHand.jpg');
 background-repeat: no-repeat;
 background-size: cover;
 }
@@ -132,6 +132,14 @@ display: none;
   flex-direction: column;
   display: flex;
   width: 100%;
+}
+
+.correct{
+  background-color: green;
+}
+
+.inCorrect{
+  background-color: red;
 }
 
 .answer:hover{

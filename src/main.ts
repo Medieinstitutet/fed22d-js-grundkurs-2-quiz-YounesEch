@@ -1,7 +1,8 @@
+/**********************************************************Import***************************************************************************************/
 import './style/style.scss';
 import { questions } from './array';
 import { shuffle } from './utils';
-
+/**********************************************************Variabler***************************************************************************************/
 const darkMode = document.querySelector('#darkMode');
 const lightMode = document.querySelector('#lightMode');
 const yesBtn = document.querySelector('#acceptedBtn');
@@ -17,14 +18,14 @@ const answer1Btn = document.querySelector('#answer1Text');
 const answer2Btn = document.querySelector('#answer2Text');
 const answer3Btn = document.querySelector('#answer3Text');
 const answer4Btn = document.querySelector('#answer4Text');
-const answers = document.querySelector('#answersContainer');
-const next = document.querySelector('#next');
 
 const questionCounter= document.querySelector('#counter');
 const maxQuestions= 10;
 
 let currentQuestion = 0; 
 let points = 0;
+
+/**********************************************************Event***************************************************************************************/
 
 darkMode.addEventListener('click', backgroundDark);
 lightMode.addEventListener('click', backgroundLight);
@@ -40,12 +41,17 @@ answer3Btn.addEventListener('click', checkAnswer);
 answer4Btn.addEventListener('click', checkAnswer); 
 
 
-next.addEventListener('click', nextQuestion);
+answer1Btn.addEventListener('click', nextQuestion);
+answer2Btn.addEventListener('click', nextQuestion);
+answer3Btn.addEventListener('click', nextQuestion);
+answer4Btn.addEventListener('click', nextQuestion);
+
 
 document.querySelector ('#restartGameBtn').addEventListener('click', restartGame);
 
 gameDescription.innerHTML = gameDescText;
 
+/**********************************************************Functions***************************************************************************************/
 function backgroundDark(){
   document.body.classList.toggle('light_theme');
   darkMode.classList.toggle('display');
@@ -72,9 +78,23 @@ function startGame() {
   gameDescription.style.display = 'none';
   document.querySelector('#playerDetails').style.display = 'none';
   document.querySelector('#questionContainer').style.display = 'block';
-  document.querySelector('#next').style.display = 'block';
-  document.body.style.backgroundImage='none';
+  document.body.style.backgroundImage ='none';
+  tickingTime.classList.remove('hide');
   nextQuestion();
+  timer = setInterval(myTimer,500);
+}
+
+const tickingTime = document.querySelector('.tickingTime');
+const timer = document.getElementById('timer');
+let sec = 60;
+
+function myTimer() {
+    timer.innerHTML = sec + ' sekunder';
+    sec--;
+    if (sec === 0) {
+        clearInterval(timer);
+        alert('Tyvärr tiden är slut!');
+    }
 }
 
 function nextQuestion() {
@@ -92,28 +112,25 @@ function nextQuestion() {
   questionCounter.innerHTML= `${currentQuestion}/${maxQuestions}`;
   }
 
-const nextBtn = document.querySelector('#next');
-nextBtn?.addEventListener('click', changeColorBack);
-
-function changeColorBack (){
-  if (darkMode){
-    document.body.style.backgroundColor='#242424';
-  } else if(lightMode) {
-    document.body.style.backgroundColor='#9d826b';
-  }
-}
 
 function checkAnswer(e){
   const userAnswer = e.currentTarget.innerHTML;
   const correctAnswer = questions[currentQuestion -1].correctAnswer;
   if (userAnswer === correctAnswer){
     points++;
-    document.body.style.backgroundColor='grey';
+    document.body.classList.toggle('correct');
   }else if(points > 0){
     points--;
-    document.body.style.backgroundColor='grey';
+    document.body.classList.toggle('inCorrect');
   }
   console.log(points);
+  setInterval(clearBackgroundColor,1000);
+  }
+
+  function clearBackgroundColor(){
+    document.body.classList.remove('correct');
+    document.body.classList.remove('inCorrect');
+    
   }
 
 function restartGame(){
@@ -125,9 +142,11 @@ function restartGame(){
 }
 
 function gameOver() {
+  tickingTime.classList.toggle('hide');
   document.querySelector('#gameOver').style.display = 'block'; 
   document.querySelector('#questionContainer').style.display = 'hidden';
   document.querySelector('#pointsContainer').innerHTML = `Grattis ${playerName} du fick ${points} poäng!!`;
   document.querySelector('#restartGameBtn').style.display = 'block';
   document.querySelector('#next').style.display = 'none';
+
 }
