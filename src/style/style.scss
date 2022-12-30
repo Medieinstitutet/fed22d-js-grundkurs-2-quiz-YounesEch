@@ -1,5 +1,5 @@
-@import "utils/a11y";
-@import "vendor/reset";
+@import "utils/a11y" ;
+@import "vendor/reset" ;
 
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
@@ -55,7 +55,7 @@ background-size: cover;
   width: 70vw;
   letter-spacing: 1.5px;
   color: #fff9f9;
-  font-weight: 600px;
+  font-weight: large;
   text-shadow:0px 0px 1px;
 }
 
@@ -171,7 +171,7 @@ button:hover{
 
 @media screen and (min-width:600px) {
   h1{
-    font-size: 30px;
+    font-size: 25px;
   }
   
 
