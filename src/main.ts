@@ -25,7 +25,7 @@ const tickingTime = document.querySelector('.tickingTime');
 const timer = document.getElementById('timer');
 
 let playerName = '';
-let sec = 60;
+let sec = 100;
 let currentQuestion = 0;
 let points = 0;
 
@@ -94,7 +94,7 @@ function checkAnswer(e){
   if (userAnswer === correctAnswer){
     btn.classList.add('correct');
     points++;
-  }else{
+  }else if (points > 0) {
     btn.classList.add('inCorrect');
     points--;
   }
