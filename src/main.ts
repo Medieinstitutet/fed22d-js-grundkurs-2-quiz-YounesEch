@@ -97,6 +97,10 @@ function myTimer() {
     }
 }
 
+function stopMyTimer(){
+  clearInterval(myTimer);
+}
+
 function nextQuestion() {
   if (currentQuestion >= shuffle(questions).length) { 
     gameOver();
@@ -112,25 +116,26 @@ function nextQuestion() {
   questionCounter.innerHTML= `${currentQuestion}/${maxQuestions}`;
   }
 
+  const btn = document.querySelector('.answerContainer');
+  
 
 function checkAnswer(e){
   const userAnswer = e.currentTarget.innerHTML;
   const correctAnswer = questions[currentQuestion -1].correctAnswer;
   if (userAnswer === correctAnswer){
+    btn.classList.add('correct');
     points++;
-    document.body.classList.toggle('correct');
-  }else if(points > 0){
+  }else{
+    btn.classList.add('inCorrect');
     points--;
-    document.body.classList.toggle('inCorrect');
   }
   console.log(points);
-  setInterval(clearBackgroundColor,1000);
+  setInterval(clearBackgroundColor,2000);
   }
 
   function clearBackgroundColor(){
-    document.body.classList.remove('correct');
-    document.body.classList.remove('inCorrect');
-    
+    btn.classList.remove('inCorrect');
+    btn.classList.remove('correct');    
   }
 
 function restartGame(){
