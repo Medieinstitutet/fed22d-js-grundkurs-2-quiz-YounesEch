@@ -1,55 +1,73 @@
 <!DOCTYPE html>
-<html lang="en"> <!-- TODO: glöm ej att byta språk här -->
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/ico" href="/js-template/favicon.ico" />
+    <link rel="icon" type="image/ico" href="/fed22d-js-grundkurs-2-quiz-YounesEch/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> 
-    <title>Quiz project</title>
-    <script type="module" crossorigin src="/js-template/assets/index.ce21c5e5.js"></script>
-    <link rel="stylesheet" href="/js-template/assets/index.a956de5e.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
+    <title>Gheography Quiz</title>
+    <script type="module" crossorigin src="/fed22d-js-grundkurs-2-quiz-YounesEch/assets/index.004f2896.js"></script>
+    <link rel="stylesheet" href="/fed22d-js-grundkurs-2-quiz-YounesEch/assets/index.95d6db34.css">
   </head>
+
   <body>
     <main>
       <div>
-        <button class="light"><i class='bx bx-toggle-right'></i></button>
-        <button class="dark"><i class='bx bxs-toggle-left'></i></button>
+        <button class="light" id="lightMode" aria-label="themeToggle"><i class='bx bx-toggle-right'></i></button>
+        <button class="dark" id="darkMode" aria-label="themeToggle"><i class='bx bxs-toggle-left'></i></button>
       </div>  
-      <section class="page-one">
-        <h1>Welcome</h1>
+      <section class="page-one" id="pageOne">
+        <h1>Welcome to the geography quiz</h1>
         <div class="question">
-          <h3>Do you dare take the challenge</h3>
+          <h3>Let us test your knowledge</h3>
           <p class="text">See if you can make it to the top</p>
           <br>
           <hr>
-          <div>Challenge Accepted!
+          <div>Accept challenge?
             <button class="accepted" id="acceptedBtn">yes</button>
             <button class="denied" id="deniedBtn">no</button>
           </div>
         </div>
-        <p>This is a quiz by Younes</p>
       </section>
-
-
-
-
-
-
-      <div class="app" id="app"></div> <!-- TODO: går bra att radera -->
-      <!-- TODO: skriv din kod här, innan script-taggen -->
+      <br>
+      <section class="page-two hide" id="pageTwo">
+        <div id="gameDescription" class="questionContainer"></div>
+        <div id="playerDetails">
+          <label>
+            <input type="text" id="playerNameInput" placeholder="Skriv in ditt namn">
+          </label>
+          <button id="startGameBtn">Starta spelet</button>
+        </div>
+      
+        <div id="questionContainer" class="container">
+          <div class="counter">
+            <h3 class="counterName">Question</h3>
+            <p id="counter">1/10</p>
+          </div>
+          <div id="questionText" class="questionInfo"></div>
+          <br>
+          <div class="answerContainer">
+              <button id="answer1Text" class="answer"></button>
+              <button id="answer2Text" class="answer"></button>
+              <button id="answer3Text" class="answer"></button>
+              <button id="answer4Text" class="answer"></button>
+          </div>
+        </div>
+        <div class="tickingTime hide" id="clock">
+          <h3>Återstående tid: <span id="timer"></span></h3>
+       </div>
+        <br>
+        <div id="gameOver" class="hidden">
+          <p id="pointsContainer"></p>
+          <p>
+            <button id="restartGameBtn" class="playAgain">Spela igen</button>
+          </p>
+        </div>
+      
+      </section>
     </main>
-
-
-
-
-
-
-
-
-
-
-
     <!-- TODO
     - Validera HTML (kopiera den renderade HTML-koden): https://validator.w3.org/#validate_by_input
     - Kontrollera tillgänglighet: https://www.a11yproject.com/checklist/ & Chrome Lighthouse/Firefox Accessibility Tools
