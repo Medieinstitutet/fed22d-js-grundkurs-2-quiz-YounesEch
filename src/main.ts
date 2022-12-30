@@ -125,7 +125,7 @@ function gameOver() {
 }
 
 /*********************************************** Event ****************************************************************/
-
+ 
 darkMode.addEventListener('click', backgroundDark);
 lightMode.addEventListener('click', backgroundLight);
 
