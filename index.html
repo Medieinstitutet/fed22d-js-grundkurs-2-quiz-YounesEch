@@ -1,22 +1,76 @@
 <!DOCTYPE html>
-<html lang="en"> <!-- TODO: glöm ej att byta språk här -->
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/ico" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projekt</title>
+    <link rel="stylesheet" href="src/style/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
+    <title>Gheography Quiz</title>
   </head>
+
   <body>
     <main>
-      <div class="app" id="app"></div> <!-- TODO: går bra att radera -->
-      <!-- TODO: skriv din kod här, innan script-taggen -->
+      <div>
+        <button class="light" id="lightMode" aria-label="themeToggle"><i class='bx bx-toggle-right'></i></button>
+        <button class="dark" id="darkMode" aria-label="themeToggle"><i class='bx bxs-toggle-left'></i></button>
+      </div>  
+      <section class="page-one" id="pageOne">
+        <h1>Welcome to the geography quiz</h1>
+        <div class="question">
+          <h3>Let us test your knowledge</h3>
+          <p class="text">See if you can make it to the top</p>
+          <br>
+          <hr>
+          <div>Accept challenge?
+            <button class="accepted" id="acceptedBtn">yes</button>
+            <button class="denied" id="deniedBtn">no</button>
+          </div>
+        </div>
+      </section>
+      <br>
+      <section class="page-two hide" id="pageTwo">
+        <div id="gameDescription" class="questionContainer"></div>
+        <div id="playerDetails">
+          <label>
+            <input type="text" id="playerNameInput" placeholder="Skriv in ditt namn">
+          </label>
+          <button id="startGameBtn">Starta spelet</button>
+        </div>
+      
+        <div id="questionContainer" class="container">
+          <div class="counter">
+            <h3 class="counterName">Question</h3>
+            <p id="counter">1/10</p>
+          </div>
+          <div id="questionText" class="questionInfo"></div>
+          <br>
+          <div class="answerContainer">
+              <button id="answer1Text" class="answer"></button>
+              <button id="answer2Text" class="answer"></button>
+              <button id="answer3Text" class="answer"></button>
+              <button id="answer4Text" class="answer"></button>
+          </div>
+        </div>
+        <div class="tickingTime hide" id="clock">
+          <h3>Återstående tid: <span id="timer"></span></h3>
+       </div>
+        <br>
+        <div id="gameOver" class="hidden">
+          <p id="pointsContainer"></p>
+          <p>
+            <button id="restartGameBtn" class="playAgain">Spela igen</button>
+          </p>
+        </div>
+      
+      </section>
     </main>
-
     <!-- TODO
     - Validera HTML (kopiera den renderade HTML-koden): https://validator.w3.org/#validate_by_input
     - Kontrollera tillgänglighet: https://www.a11yproject.com/checklist/ & Chrome Lighthouse/Firefox Accessibility Tools
     - Validera genererade CSS: https://jigsaw.w3.org/css-validator/#validate_by_input
     -->
-    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>
